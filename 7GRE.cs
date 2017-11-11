@@ -199,7 +199,7 @@ namespace _7G_Replay_Editor
                     DialogResult result = MessageBox.Show("An update is available. Do you want to download it?", "An update is available", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk);
                     if (result == DialogResult.Yes)
                     {
-                        System.Diagnostics.Process.Start("https://lyviaff.kojuri.com/7G-Replay-Editor");
+                        System.Diagnostics.Process.Start("https://lyviaff.kojuri.com/7g-replay-editor");
                         Environment.Exit(0);
                     }
                 }
