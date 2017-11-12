@@ -70,12 +70,12 @@ namespace _7G_Replay_Editor
         {
             if(Directory.Exists("bak\\"))
             {
-                File.Copy(txtPath.Text, "bak\\" + Path.GetFileName(txtPath.Text));
+                File.Copy(txtPath.Text, "bak\\" + Path.GetFileName(txtPath.Text) + "_" + DateTime.Now.ToString().Replace('/', '-').Replace(':', '-').Replace(' ', '_'));
             }
             else
             {
                 Directory.CreateDirectory("bak\\");
-                File.Copy(txtPath.Text, "bak\\" + Path.GetFileName(txtPath.Text));
+                File.Copy(txtPath.Text, "bak\\" + Path.GetFileName(txtPath.Text) + "_" + DateTime.Now.ToString().Replace('/', '-').Replace(':', '-').Replace(' ', '_'));
             }
             try
             {
@@ -174,27 +174,14 @@ namespace _7G_Replay_Editor
         {
             try
             {
-                FileStream file = new FileStream(Process.GetCurrentProcess().MainModule.FileName, FileMode.Open, FileAccess.Read);
-                MD5 md5 = new MD5CryptoServiceProvider();
-                byte[] fileMd5 = md5.ComputeHash(file);
-                file.Close();
-
-                StringBuilder sb = new StringBuilder();
-                for (int i = 0; i < fileMd5.Length; i++)
-                {
-                    sb.Append(fileMd5[i].ToString("x2"));
-                }
-
-                WebRequest request = HttpWebRequest.Create("https://lyviaff.kojuri.com/assets/7g-replay-editor.exe");
-                WebResponse answer = request.GetResponse();
-                byte[] remoteMd5 = md5.ComputeHash(answer.GetResponseStream());
-                StringBuilder sb1 = new StringBuilder();
-                for (int i = 0; i < remoteMd5.Length; i++)
-                {
-                    sb1.Append(remoteMd5[i].ToString("x2"));
-                }
-
-                if (sb.ToString() != sb1.ToString())
+                WebClient client = new WebClient();
+                Stream stream = client.OpenRead("https://lyviaff.kojuri.com/assets/7GREversion.txt");
+                StreamReader reader = new StreamReader(stream);
+                string content = reader.ReadToEnd();
+                System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
+                FileVersionInfo info = FileVersionInfo.GetVersionInfo(assembly.Location);
+                string version = info.FileVersion;
+                if (content != version)
                 {
                     DialogResult result = MessageBox.Show("An update is available. Do you want to download it?", "An update is available", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk);
                     if (result == DialogResult.Yes)
