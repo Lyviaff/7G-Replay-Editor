@@ -122,16 +122,19 @@ namespace _7G_Replay_Editor
             Read(0x1D4, cbb12);
             if (cbb12.Text != null && cbb12.Text != "" && cbb12.Text != "Don\'t change")
             {
-                AddToCbb(cbb1, cbb1Content, "57 = Battle Agency");
+                AddToCbb(cbb1, cbb1Content, "55 = Mahalo Mountain Trail");
                 AddToCbb(cbb5, cbb5Content, "FF = None");
             }
         }
 
         private void AddToCbb(ComboBox cbb, string[] board, string exclusion)
         {
+            bool isUnknown = false;
             if (cbb12.Text.Substring(0, 2) == "65" || cbb12.Text.Substring(0, 2) == "66" || cbb12.Text.Substring(0, 2) == "67")
             {
                 string value = cbb.Text.Substring(0, 2);
+                if (cbb.Text.Contains("UNKNOWN"))
+                    isUnknown = true;
                 cbb.Items.Clear();
                 foreach (string item in board)
                 {
@@ -140,38 +143,35 @@ namespace _7G_Replay_Editor
                     else
                         break;
                 }
-                if (value != "")
+
+                if (isUnknown)
                 {
-                    try
-                    {
-                        int index = cbb.FindString(value);
-                        cbb.SelectedIndex = index;
-                    }
-                    catch
-                    {
-                        cbb.Items.Add(value + " - UNKNOWN");
-                        cbb.SelectedIndex = cbb.Items.Count;
-                    }
+                    cbb.Items.Add(value + " - UNKNOWN");
+                    cbb.SelectedIndex = cbb.Items.Count -1;
+                }
+                else
+                {
+                    int index = cbb.FindString(value);
+                    cbb.SelectedIndex = index;
                 }
             }
             else
             {
                 string value = cbb.Text.Substring(0, 2);
+                if (cbb.Text.Contains("UNKNOWN"))
+                    isUnknown = true;
                 cbb.Items.Clear();
                 foreach (string item in board)
                     cbb.Items.Add(item);
-                if (value != "")
+                if (isUnknown)
                 {
-                    try
-                    {
-                        int index = cbb.FindString(value);
-                        cbb.SelectedIndex = index;
-                    }
-                    catch
-                    {
-                        cbb.Items.Add(value + " - UNKNOWN");
-                        cbb.SelectedIndex = cbb.Items.Count;
-                    }
+                    cbb.Items.Add(value + " - UNKNOWN");
+                    cbb.SelectedIndex = cbb.Items.Count -1;
+                }
+                else
+                {
+                    int index = cbb.FindString(value);
+                    cbb.SelectedIndex = index;
                 }
             }
         }
@@ -253,7 +253,7 @@ namespace _7G_Replay_Editor
 
         private void changelogToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("7G Replay Editor beta v.0.2:\n\n- There's a new background : The Battle Agency - thanks to Sorcier Malgach.\n- A \"changelog\" menu has been added\n- Updated CheckForUpdates function\n- Fixed stuff", "Changelog", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            MessageBox.Show("7G Replay Editor beta v.0.2.1:\n\n- Added new USUM musics - thanks to Dalia\n- Added new USUM backgrounds (including USUM Battle Agency) - thanks to Sorcier Malgache\n- Added a \"changelog\" menu\n- Updated CheckForUpdates function\n- Fixed stuff", "Changelog", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
         }
 
         private void lyviaffToolStripMenuItem_Click(object sender, EventArgs e)
@@ -262,15 +262,6 @@ namespace _7G_Replay_Editor
             if (result == DialogResult.Yes)
             {
                 System.Diagnostics.Process.Start("https://www.Twitter.com/Lyviaff");
-            }
-        }
-
-        private void daliaToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            DialogResult result = MessageBox.Show("He helped the developer by testing each hex value corresponding to each music. Do you want to show him Twitter?", "Dalia", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk);
-            if (result == DialogResult.Yes)
-            {
-                System.Diagnostics.Process.Start("https://www.Twitter.com/DaliaAsTrue");
             }
         }
 
@@ -352,7 +343,11 @@ namespace _7G_Replay_Editor
             "48 = Solgaleo encounter with Lillie in background",
             "49 = Lunala encounter with Lillie in background",
             "4A = C R A S H",
-            "57 = Battle Agency"};
+            "55 = Mahalo Mountain Trail",
+            "56 = ? (looks like a legendary encounter in ORAS)",
+            "57 = Battle Agency",
+            "58 = ?",
+            "59 = Elite 4 (USUM)"};
 
         string[] cbb5Content = {
             "Don\'t change",

@@ -23,7 +23,6 @@
             this.changelogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.creditsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lyviaffToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.daliaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.txtPath = new System.Windows.Forms.TextBox();
             this.btBrowse = new System.Windows.Forms.Button();
             this.lbPath = new System.Windows.Forms.Label();
@@ -90,22 +89,21 @@
             // helpToolStripMenuItem1
             // 
             this.helpToolStripMenuItem1.Name = "helpToolStripMenuItem1";
-            this.helpToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.helpToolStripMenuItem1.Size = new System.Drawing.Size(132, 22);
             this.helpToolStripMenuItem1.Text = "Help";
             this.helpToolStripMenuItem1.Click += new System.EventHandler(this.helpToolStripMenuItem1_Click);
             // 
             // changelogToolStripMenuItem
             // 
             this.changelogToolStripMenuItem.Name = "changelogToolStripMenuItem";
-            this.changelogToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.changelogToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.changelogToolStripMenuItem.Text = "Changelog";
             this.changelogToolStripMenuItem.Click += new System.EventHandler(this.changelogToolStripMenuItem_Click);
             // 
             // creditsToolStripMenuItem
             // 
             this.creditsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.lyviaffToolStripMenuItem,
-            this.daliaToolStripMenuItem});
+            this.lyviaffToolStripMenuItem});
             this.creditsToolStripMenuItem.Name = "creditsToolStripMenuItem";
             this.creditsToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
             this.creditsToolStripMenuItem.Text = "Credits";
@@ -116,13 +114,6 @@
             this.lyviaffToolStripMenuItem.Size = new System.Drawing.Size(108, 22);
             this.lyviaffToolStripMenuItem.Text = "Lyviaff";
             this.lyviaffToolStripMenuItem.Click += new System.EventHandler(this.lyviaffToolStripMenuItem_Click);
-            // 
-            // daliaToolStripMenuItem
-            // 
-            this.daliaToolStripMenuItem.Name = "daliaToolStripMenuItem";
-            this.daliaToolStripMenuItem.Size = new System.Drawing.Size(108, 22);
-            this.daliaToolStripMenuItem.Text = "Dalia";
-            this.daliaToolStripMenuItem.Click += new System.EventHandler(this.daliaToolStripMenuItem_Click);
             // 
             // txtPath
             // 
@@ -257,7 +248,11 @@
             "47 = Some Solgaleo Temple",
             "48 = Solgaleo encounter with Lillie in background",
             "49 = Lunala encounter with Lillie in background",
+            "55 = Mahalo Mountain Trail",
+            "56 = ? (looks like a legendary encounter in ORAS)",
             "57 = Battle Agency",
+            "58 = ?",
+            "59 = Elite 4 (USUM)",
             "4A = C R A S H"});
             this.cbb1.Location = new System.Drawing.Point(166, 86);
             this.cbb1.Margin = new System.Windows.Forms.Padding(2);
@@ -1305,7 +1300,6 @@
         private System.Windows.Forms.Label lbSecondTr;
         private System.Windows.Forms.Label lbVersion;
         private System.Windows.Forms.ComboBox cbb12;
-        private System.Windows.Forms.ToolStripMenuItem daliaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem changelogToolStripMenuItem;
     }
