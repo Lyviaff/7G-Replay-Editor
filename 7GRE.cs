@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Security.Cryptography;
-using System.Text;
 using System.Windows.Forms;
 
 namespace _7G_Replay_Editor
@@ -68,7 +65,7 @@ namespace _7G_Replay_Editor
 
         private void btApply_Click(object sender, EventArgs e)
         {
-            if(Directory.Exists("bak\\"))
+            if (Directory.Exists("bak\\"))
             {
                 File.Copy(txtPath.Text, "bak\\" + Path.GetFileName(txtPath.Text) + "_" + DateTime.Now.ToString().Replace('/', '-').Replace(':', '-').Replace(' ', '_'));
             }
@@ -123,6 +120,60 @@ namespace _7G_Replay_Editor
             Read(0x214, cbb10);
             Read(0x230, cbb11);
             Read(0x1D4, cbb12);
+            if (cbb12.Text != null && cbb12.Text != "" && cbb12.Text != "Don\'t change")
+            {
+                AddToCbb(cbb1, cbb1Content, "57 = Battle Agency");
+                AddToCbb(cbb5, cbb5Content, "FF = None");
+            }
+        }
+
+        private void AddToCbb(ComboBox cbb, string[] board, string exclusion)
+        {
+            if (cbb12.Text.Substring(0, 2) == "65" || cbb12.Text.Substring(0, 2) == "66" || cbb12.Text.Substring(0, 2) == "67")
+            {
+                string value = cbb.Text.Substring(0, 2);
+                cbb.Items.Clear();
+                foreach (string item in board)
+                {
+                    if (item != exclusion)
+                        cbb.Items.Add(item);
+                    else
+                        break;
+                }
+                if (value != "")
+                {
+                    try
+                    {
+                        int index = cbb.FindString(value);
+                        cbb.SelectedIndex = index;
+                    }
+                    catch
+                    {
+                        cbb.Items.Add(value + " - UNKNOWN");
+                        cbb.SelectedIndex = cbb.Items.Count;
+                    }
+                }
+            }
+            else
+            {
+                string value = cbb.Text.Substring(0, 2);
+                cbb.Items.Clear();
+                foreach (string item in board)
+                    cbb.Items.Add(item);
+                if (value != "")
+                {
+                    try
+                    {
+                        int index = cbb.FindString(value);
+                        cbb.SelectedIndex = index;
+                    }
+                    catch
+                    {
+                        cbb.Items.Add(value + " - UNKNOWN");
+                        cbb.SelectedIndex = cbb.Items.Count;
+                    }
+                }
+            }
         }
 
         private void Edit(uint hexValue, ComboBox cbb)
@@ -155,7 +206,7 @@ namespace _7G_Replay_Editor
                     cbb.SelectedIndex = index;
                     if (cbb.Text == "")
                     {
-                        if(value == null)
+                        if (value == null)
                         {
                             cbb.SelectedIndex = 0;
                         }
@@ -178,12 +229,13 @@ namespace _7G_Replay_Editor
                 Stream stream = client.OpenRead("https://lyviaff.kojuri.com/assets/7GREversion.txt");
                 StreamReader reader = new StreamReader(stream);
                 string content = reader.ReadToEnd();
+                string[] contentSplitted = content.Split('/');
                 System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
                 FileVersionInfo info = FileVersionInfo.GetVersionInfo(assembly.Location);
                 string version = info.FileVersion;
-                if (content != version)
+                if (contentSplitted[0] != version)
                 {
-                    DialogResult result = MessageBox.Show("An update is available. Do you want to download it?", "An update is available", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk);
+                    DialogResult result = MessageBox.Show("7G Replay Editor " + contentSplitted[0] + " is available.\nDo you want to download it?\n\n\nChangelog:\n" + contentSplitted[1], "An update is available", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk);
                     if (result == DialogResult.Yes)
                     {
                         System.Diagnostics.Process.Start("https://lyviaff.kojuri.com/7g-replay-editor");
@@ -194,9 +246,14 @@ namespace _7G_Replay_Editor
             catch { }
         }
 
-        private void helpToolStripMenuItem_Click(object sender, EventArgs e)
+        private void helpToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Drag and drop or browse your files with Windows Explorer to open the replay. Once opened, the replay settings are displayed. Then select the settings you want to change and modify them, then validate.\n\nWhen you import your replay, the software sometimes displays \"Unknown\" for an option. In this case, please contact the developer via his website or via Twitter to let him know and make him able to update the software.", "Help", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+        }
+
+        private void changelogToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("7G Replay Editor beta v.0.2:\n\n- There's a new background : The Battle Agency - thanks to Sorcier Malgach.\n- A \"changelog\" menu has been added\n- Updated CheckForUpdates function\n- Fixed stuff", "Changelog", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
         }
 
         private void lyviaffToolStripMenuItem_Click(object sender, EventArgs e)
@@ -216,5 +273,156 @@ namespace _7G_Replay_Editor
                 System.Diagnostics.Process.Start("https://www.Twitter.com/DaliaAsTrue");
             }
         }
+
+        string[] cbb1Content =
+            {
+            "Don\'t change",
+            "00 = Nothing",
+            "01 = Some Route Grass",
+            "02 = Field with little flowers",
+            "03 = Forest",
+            "04 = Mountainish area",
+            "05 = Some Mountainish area ",
+            "06 = Volcanic Area",
+            "07 = Probably Mountian before Elite 4",
+            "08 = Valley mountain area",
+            "09 = Cemetery",
+            "0A = Abandoned Poke Mart (Ghost Trial Area)",
+            "0B = Mountainish with some grass",
+            "0C = Tall grass with some rocks",
+            "0D = Melemele Meadow",
+            "0E = Route 6",
+            "0F = Po Town",
+            "10 = Iki Town Festival Platform",
+            "11 = Paniola Town",
+            "12 = Hau\'oli city Marina Day",
+            "13 = Konikoni City ",
+            "14 = Some Street probably route 8",
+            "15 = Sand or beach",
+            "16 = Beach with forest and some cliffs",
+            "17 = Beach with chairs and stuff",
+            "18 = Route 14 beach area",
+            "19 = Water with grass around it",
+            "1A = Water with rocks around",
+            "1B = Cave",
+            "1C = Cave with water",
+            "1D = one of the Tapu Areas",
+            "1E = Generic Indoor area",
+            "1F = Totem Mimikyu arena",
+            "20 = Classroom",
+            "21 = Po Town Team Skull Base",
+            "22 = Verdant Cavern (First Trial Area)",
+            "23 = Elite 4 Hala",
+            "24 = Elite 4 Olivia",
+            "25 = Elite 4 Acerola",
+            "26 = Elite 4 Kahili",
+            "27 = Champion",
+            "28 = Snowy Field",
+            "29 = Aether Foundation Hallway",
+            "2A = Aether Foundation Conservation Area",
+            "2B = Solgaleo Encounter",
+            "2C = Lunala Encounter",
+            "2D = Ultra Space",
+            "2E = Battle Tree stairs",
+            "2F = Battle Royal",
+            "30 = Default Wifi",
+            "31 = World Championship",
+            "32 = World Championship Finals",
+            "33 = Misty Terrain",
+            "34 = Electric Terrain",
+            "35 = Grassy Terrain",
+            "36 = Psychic Terrain",
+            "37 = Lush Jungle",
+            "38 = Desert",
+            "39 = Mountain/Cave area",
+            "3A = Route 10 Mountain road",
+            "3B = Some route with fences and palm trees",
+            "3C = Seafolk Village/Docks",
+            "3D = Malie Garden?",
+            "3E = Lush Jungle with tall grass around",
+            "3F = Preservation Room",
+            "40 = Some Cave frosty maybe",
+            "41 = Field of Grass",
+            "42 = Yellow grass with rocks",
+            "43 = Malie Garden Again?",
+            "44 = Battle Tree End Top",
+            "45 = Battle Tree Battle Legend?",
+            "46 = Grey Mountainish area with rocks",
+            "47 = Some Solgaleo Temple",
+            "48 = Solgaleo encounter with Lillie in background",
+            "49 = Lunala encounter with Lillie in background",
+            "4A = C R A S H",
+            "57 = Battle Agency"};
+
+        string[] cbb5Content = {
+            "Don\'t change",
+            "4B = Wild Pokémon SM",
+            "4C = Test",
+            "4D = Trainer SM",
+            "4E = Island Kahuna",
+            "4F = My Friend Hau",
+            "50 = Gladion",
+            "51 = Team Skull",
+            "52 = Team Skull Admin",
+            "53 = Team Skull Boss",
+            "54 = Aether Foundation",
+            "55 = Lusamine, Version 1",
+            "56 = Lusamine, Version 2",
+            "57 = Enter the Ultra Beasts",
+            "58 = Elite Four",
+            "59 = League Title Defense",
+            "5A = Guardian Deity",
+            "5B = Legendary Pokémon",
+            "5C = VS Red/Green",
+            "5D = Battle Royal",
+            "5E = World Champion Ships",
+            "A0 = Cynthia",
+            "A9 = XY",
+            "AA = Elite 4 BW",
+            "AB = Wally ORAS",
+            "AC = Colress",
+            "FF = None",
+            "B8 = ?",
+            "B9 = ?",
+            "BA = Wild Pokemon USUM",
+            "BB = ?",
+            "BC = ?",
+            "BD = ?",
+            "BE = ?",
+            "BF = ?",
+            "C0 = ?",
+            "C1 = ?",
+            "C2 = Team Rainbow Rocket Hideout",
+            "C3 = Team Rainbow Rocket Hideout 2",
+            "C4 = Team Rainbow Rocket Admin",
+            "C5 = Team Rainbow Rocket Giovanni",
+            "C6 = Team Aqua/Magma Admins",
+            "C7 = Team Galaxy Cyrus",
+            "C8 = Team Plasma Ghetsis",
+            "C9 = Team Flare Lysandre",
+            "CA = Ultra-Commando",
+            "CB = Final Necrozma Encounter",
+            "CC = Necrozma Encounter",
+            "CD = Kinematic",
+            "CE = ?",
+            "D2 = ?",
+            "D3 = ?",
+            "D4 = Legendary Trio XY",
+            "D5 = Wild Pokemon R/B/Y",
+            "D6 = Wild Pokemon R/S/E",
+            "D7 = Legendary R/S/E",
+            "D8 = Legendary Trio R/S/E",
+            "D9 = Legendary Ho-Oh",
+            "DA = Legendary Lugia",
+            "DB = Legendary Trio O/A/C",
+            "DC = Legendary Trio D/P/Pt",
+            "DD = Legendary D/P",
+            "DE = Legendary Fabulous D/P",
+            "DF = Legendary Giratina",
+            "E0 = Legendary Trio BW",
+            "E1 = Legendary BW",
+            "E2 = Rainbow Rocket Sbire",
+            "E3 = Legendary XY",
+            "E4 = Trainer USUM"};
     }
 }
