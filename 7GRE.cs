@@ -261,7 +261,7 @@ namespace _7G_Replay_Editor
 
         private void changelogToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("7G Replay Editor v.1.0:\n\n- Added some new USUM musics - thanks to Dalia\n- Added all the new USUM backgrounds - thanks to Sorcier Malgache\n- Added all the new trainer classes - thanks to KekMcGee\n- Fixed stuff", "Changelog", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            MessageBox.Show("7G Replay Editor v.1.0:\n\n- Added some new USUM musics - thanks to Dalia\n- Added all the new USUM backgrounds - thanks to Sorcier Malgache\n- Added all the new USUM trainer classes - thanks to KekMcGee\n- Fixed stuff", "Changelog", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
         }
 
         private void lyviaffToolStripMenuItem_Click(object sender, EventArgs e)
