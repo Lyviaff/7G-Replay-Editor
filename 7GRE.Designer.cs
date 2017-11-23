@@ -89,14 +89,14 @@
             // helpToolStripMenuItem1
             // 
             this.helpToolStripMenuItem1.Name = "helpToolStripMenuItem1";
-            this.helpToolStripMenuItem1.Size = new System.Drawing.Size(132, 22);
+            this.helpToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.helpToolStripMenuItem1.Text = "Help";
             this.helpToolStripMenuItem1.Click += new System.EventHandler(this.helpToolStripMenuItem1_Click);
             // 
             // changelogToolStripMenuItem
             // 
             this.changelogToolStripMenuItem.Name = "changelogToolStripMenuItem";
-            this.changelogToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
+            this.changelogToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.changelogToolStripMenuItem.Text = "Changelog";
             this.changelogToolStripMenuItem.Click += new System.EventHandler(this.changelogToolStripMenuItem_Click);
             // 
@@ -248,12 +248,27 @@
             "47 = Some Solgaleo Temple",
             "48 = Solgaleo encounter with Lillie in background",
             "49 = Lunala encounter with Lillie in background",
+            "4A = C R A S H",
+            "4B = Autumn House",
+            "4C = Underwater",
+            "4D = Ruins",
+            "4E = Place with fir trees",
+            "50 = Hearts",
+            "51 = Space",
+            "53 = What the fuck? (seems to be an illuminati tournament)",
+            "54 = What the fuck?? (seems to be a party)",
             "55 = Mahalo Mountain Trail",
-            "56 = ? (looks like a legendary encounter in ORAS)",
+            "56 = Ultra Wormhole",
             "57 = Battle Agency",
-            "58 = ?",
-            "59 = Elite 4 (USUM)",
-            "4A = C R A S H"});
+            "58 = Ultra Megalopolis",
+            "59 = Elite 4 Molayne",
+            "5A = Rainbow Rocket Sbire",
+            "5B = Rainbow Rocket Giovanni",
+            "5C = Last Trial Captain",
+            "5D = Route 1",
+            "5E = Rainbow Rocket Boss",
+            "5F = Mahalo Trail",
+            "4F = C R A S H"});
             this.cbb1.Location = new System.Drawing.Point(166, 86);
             this.cbb1.Margin = new System.Windows.Forms.Padding(2);
             this.cbb1.Name = "cbb1";
@@ -1259,7 +1274,7 @@
             this.MainMenuStrip = this.menu;
             this.MaximizeBox = false;
             this.Name = "SGRE";
-            this.Text = "7G Replay Editor - beta";
+            this.Text = "7G Replay Editor";
             this.menu.ResumeLayout(false);
             this.menu.PerformLayout();
             this.ResumeLayout(false);

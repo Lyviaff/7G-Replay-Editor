@@ -65,36 +65,41 @@ namespace _7G_Replay_Editor
 
         private void btApply_Click(object sender, EventArgs e)
         {
-            if (Directory.Exists("bak\\"))
-            {
-                File.Copy(txtPath.Text, "bak\\" + Path.GetFileName(txtPath.Text) + "_" + DateTime.Now.ToString().Replace('/', '-').Replace(':', '-').Replace(' ', '_'));
-            }
-            else
-            {
-                Directory.CreateDirectory("bak\\");
-                File.Copy(txtPath.Text, "bak\\" + Path.GetFileName(txtPath.Text) + "_" + DateTime.Now.ToString().Replace('/', '-').Replace(':', '-').Replace(' ', '_'));
-            }
             try
             {
-                Edit(0x1EC, cbb1);
-                Edit(0x1ED, cbb2);
-                Edit(0x1EE, cbb3);
-                Edit(0x1EF, cbb4);
-                Edit(0x21C, cbb5);
-                Edit(0x1FA, cbb6);
-                Edit(0x2A48, cbb7);
-                Edit(0x2AC0, cbb8);
-                Edit(0x2B38, cbb9);
-                Edit(0x214, cbb10);
-                Edit(0x230, cbb11);
-                Edit(0x1D4, cbb12);
+                if (Directory.Exists("bak\\"))
+                {
+                    File.Copy(txtPath.Text, "bak\\" + Path.GetFileName(txtPath.Text) + "_" + DateTime.Now.ToString().Replace('/', '-').Replace(':', '-').Replace(' ', '_'));
+                }
+                else
+                {
+                    Directory.CreateDirectory("bak\\");
+                    File.Copy(txtPath.Text, "bak\\" + Path.GetFileName(txtPath.Text) + "_" + DateTime.Now.ToString().Replace('/', '-').Replace(':', '-').Replace(' ', '_'));
+                }
+                try
+                {
+                    Edit(0x1EC, cbb1);
+                    Edit(0x1ED, cbb2);
+                    Edit(0x1EE, cbb3);
+                    Edit(0x1EF, cbb4);
+                    Edit(0x21C, cbb5);
+                    Edit(0x1FA, cbb6);
+                    Edit(0x2A48, cbb7);
+                    Edit(0x2AC0, cbb8);
+                    Edit(0x2B38, cbb9);
+                    Edit(0x214, cbb10);
+                    Edit(0x230, cbb11);
+                    Edit(0x1D4, cbb12);
+                }
+                catch
+                {
+                    MessageBox.Show("An error has occured.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                ExecuteRead();
+                MessageBox.Show("The replay has successfully been edited!", "Done", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             }
-            catch
-            {
-                MessageBox.Show("An error has occured.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            MessageBox.Show("The replay has successfully been edited!", "Done", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            catch { }
         }
 
         private void ExecuteRead()
@@ -122,7 +127,7 @@ namespace _7G_Replay_Editor
             Read(0x1D4, cbb12);
             if (cbb12.Text != null && cbb12.Text != "" && cbb12.Text != "Don\'t change")
             {
-                AddToCbb(cbb1, cbb1Content, "55 = Mahalo Mountain Trail");
+                AddToCbb(cbb1, cbb1Content, "4B = Autumn House");
                 AddToCbb(cbb5, cbb5Content, "FF = None");
             }
         }
@@ -253,7 +258,7 @@ namespace _7G_Replay_Editor
 
         private void changelogToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("7G Replay Editor beta v.0.2.1:\n\n- Added new USUM musics - thanks to Dalia\n- Added new USUM backgrounds (including USUM Battle Agency) - thanks to Sorcier Malgache\n- Added a \"changelog\" menu\n- Updated CheckForUpdates function\n- Fixed stuff", "Changelog", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            MessageBox.Show("7G Replay Editor v.1.0:\n\n- Added some new USUM musics - thanks to Dalia\n- Added all the new USUM backgrounds - thanks to Sorcier Malgache\n- Fixed stuff", "Changelog", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
         }
 
         private void lyviaffToolStripMenuItem_Click(object sender, EventArgs e)
@@ -265,8 +270,7 @@ namespace _7G_Replay_Editor
             }
         }
 
-        string[] cbb1Content =
-            {
+        string[] cbb1Content = {
             "Don\'t change",
             "00 = Nothing",
             "01 = Some Route Grass",
@@ -343,11 +347,26 @@ namespace _7G_Replay_Editor
             "48 = Solgaleo encounter with Lillie in background",
             "49 = Lunala encounter with Lillie in background",
             "4A = C R A S H",
+            "4B = Autumn House",
+            "4C = Underwater",
+            "4D = Ruins",
+            "4E = Place with fir trees",
+            "50 = Hearts",
+            "51 = Space",
+            "53 = What the fuck? (seems to be an illuminati tournament)",
+            "54 = What the fuck?? (seems to be a party)",
             "55 = Mahalo Mountain Trail",
-            "56 = ? (looks like a legendary encounter in ORAS)",
+            "56 = Ultra Wormhole",
             "57 = Battle Agency",
-            "58 = ?",
-            "59 = Elite 4 (USUM)"};
+            "58 = Ultra Megalopolis",
+            "59 = Elite 4 Molayne",
+            "5A = Rainbow Rocket Sbire",
+            "5B = Rainbow Rocket Giovanni",
+            "5C = Last Trial Captain",
+            "5D = Route 1",
+            "5E = Rainbow Rocket Boss",
+            "5F = Mahalo Trail",
+            "4F = C R A S H"};
 
         string[] cbb5Content = {
             "Don\'t change",
