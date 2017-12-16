@@ -1,0 +1,3 @@
+1.1/
+- Changed the changelog file used to check for updates
+- Added support for version 1.1 of Pokémon USUM
