@@ -89,14 +89,14 @@
             // helpToolStripMenuItem1
             // 
             this.helpToolStripMenuItem1.Name = "helpToolStripMenuItem1";
-            this.helpToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.helpToolStripMenuItem1.Size = new System.Drawing.Size(132, 22);
             this.helpToolStripMenuItem1.Text = "Help";
             this.helpToolStripMenuItem1.Click += new System.EventHandler(this.helpToolStripMenuItem1_Click);
             // 
             // changelogToolStripMenuItem
             // 
             this.changelogToolStripMenuItem.Name = "changelogToolStripMenuItem";
-            this.changelogToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.changelogToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.changelogToolStripMenuItem.Text = "Changelog";
             this.changelogToolStripMenuItem.Click += new System.EventHandler(this.changelogToolStripMenuItem_Click);
             // 
@@ -1335,7 +1335,8 @@
             "65 = Pokémon Sun/Moon version 1.0 (compatible with Citra)",
             "66 = Pokémon Sun/Moon version 1.1",
             "67 = Pokémon Sun/Moon version 1.2",
-            "6E = Pokémon Ultra Sun/Moon 1.0 (compatible with Citra)"});
+            "6E = Pokémon Ultra Sun/Moon 1.0 (compatible with Citra)",
+            "6F = Pokémon Ultra Sun/Moon 1.1"});
             this.cbb12.Location = new System.Drawing.Point(166, 361);
             this.cbb12.Name = "cbb12";
             this.cbb12.Size = new System.Drawing.Size(310, 21);

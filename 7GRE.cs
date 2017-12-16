@@ -234,7 +234,7 @@ namespace _7G_Replay_Editor
             try
             {
                 WebClient client = new WebClient();
-                Stream stream = client.OpenRead("https://lyviaff.kojuri.com/assets/7GREversion.txt");
+                Stream stream = client.OpenRead("https://raw.githubusercontent.com/Lyviaff/7G-Replay-Editor/master/changelog.txt");
                 StreamReader reader = new StreamReader(stream);
                 string content = reader.ReadToEnd();
                 string[] contentSplitted = content.Split('/');
@@ -261,7 +261,7 @@ namespace _7G_Replay_Editor
 
         private void changelogToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("7G Replay Editor v.1.0:\n\n- Added some new USUM musics - thanks to Dalia\n- Added all the new USUM backgrounds - thanks to Sorcier Malgache\n- Added all the new USUM trainer classes - thanks to KekMcGee\n- Fixed stuff", "Changelog", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            MessageBox.Show("7G Replay Editor v.1.1:\n\n- Changed the changelog file used to check for updates\n- Added support for version 1.1 of Pokémon USUM", "Changelog", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
         }
 
         private void lyviaffToolStripMenuItem_Click(object sender, EventArgs e)
