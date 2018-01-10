@@ -266,7 +266,7 @@ namespace _7G_Replay_Editor
 
         private void lyviaffToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("This program has been developed by Lyviaff. Do you want to show him Twitter?", "Lyviaff", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk);
+            DialogResult result = MessageBox.Show("This program has been developed by Lyviaff. Do you want to show his Twitter?", "Lyviaff", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk);
             if (result == DialogResult.Yes)
             {
                 System.Diagnostics.Process.Start("https://www.Twitter.com/Lyviaff");
