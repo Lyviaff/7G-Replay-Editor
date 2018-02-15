@@ -1336,7 +1336,7 @@
             "66 = Pokémon Sun/Moon version 1.1",
             "67 = Pokémon Sun/Moon version 1.2",
             "6E = Pokémon Ultra Sun/Moon 1.0 (compatible with Citra)",
-            "6F = Pokémon Ultra Sun/Moon 1.1"});
+            "6F = Pokémon Ultra Sun/Moon 1.1 & 1.2"});
             this.cbb12.Location = new System.Drawing.Point(166, 361);
             this.cbb12.Name = "cbb12";
             this.cbb12.Size = new System.Drawing.Size(310, 21);
