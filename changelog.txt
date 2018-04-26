@@ -1,2 +1,2 @@
-1.1.1/
-- Added support for version 1.2 of Pokémon USUM
+1.1.2/
+The software doesn't use the website of its developer anymore and now only requires GitHub to work.
