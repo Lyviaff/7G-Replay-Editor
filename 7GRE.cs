@@ -246,7 +246,7 @@ namespace _7G_Replay_Editor
                     DialogResult result = MessageBox.Show("7G Replay Editor " + contentSplitted[0] + " is available.\nDo you want to download it?\n\n\nChangelog:\n" + contentSplitted[1], "An update is available", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk);
                     if (result == DialogResult.Yes)
                     {
-                        System.Diagnostics.Process.Start("https://lyviaff.kojuri.com/7g-replay-editor");
+                        System.Diagnostics.Process.Start("https://github.com/Lyviaff/7G-Replay-Editor/releases");
                         Environment.Exit(0);
                     }
                 }
@@ -256,17 +256,17 @@ namespace _7G_Replay_Editor
 
         private void helpToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Drag and drop or browse your files with Windows Explorer to open the replay. Once opened, the replay settings are displayed. Then select the settings you want to change and modify them, then validate.\n\nWhen you import your replay, the software sometimes displays \"Unknown\" for an option. In this case, please contact the developer via his website or via Twitter to let him know and make him able to update the software.", "Help", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            MessageBox.Show("Drag and drop or browse your files with Windows Explorer to open the replay. Once opened, the replay settings are displayed. Then select the settings you want to change and modify them, then validate.\n\nWhen you import your replay, the software sometimes displays \"Unknown\" for an option. In this case, please contact the developer via Twitter to let him know and make him able to update the software.", "Help", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
         }
 
         private void changelogToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("7G Replay Editor v.1.1.1:\n\n- Added support for version 1.2 of Pokémon USUM", "Changelog", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            MessageBox.Show("7G Replay Editor v.1.1.2:\n\n- The software doesn't use the website of its developer anymore and now only requires Github to work.", "Changelog", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
         }
 
         private void lyviaffToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("This program has been developed by Lyviaff. Do you want to show his Twitter?", "Lyviaff", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk);
+            DialogResult result = MessageBox.Show("This program has been developed by Lyviaff. Do you want to display his Twitter?", "Lyviaff", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk);
             if (result == DialogResult.Yes)
             {
                 System.Diagnostics.Process.Start("https://www.Twitter.com/Lyviaff");
